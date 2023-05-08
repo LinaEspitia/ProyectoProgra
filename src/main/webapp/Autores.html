@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1>Registrar producto con autores</h1>
+    <form action="RegistrarAutor" method="post">
+      <div class="mb-3">
+        <label for="nombreAutores" class="form-label">Nombre de autor:</label>
+        <input id="nombreAutores" name="nombreAutores" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="tipoDocumento" class="form-label">Tipo de documento:</label>
+        <select id="tipoDocumento" name="tipoDocumento" class="form-control" required>
+          <option value="">Seleccione un tipo de documento</option>
+          <option value="Cedula de ciudadania">Cédula de ciudadanía</option>
+          <option value="Tarjeta de identidad">Tarjeta de identidad</option>
+          <option value="Pasaporte">Pasaporte</option>
+          <option value="Cedula extranjera">Cédula extranjera</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="numeroDocumento">Numero Documento:</label>
+		<input type="number" id="numeroDocumento" name="numeroDocumento" class="form-control" required><br><br>
+		
+      </div>
+
+    <button type="submit" class="btn btn-primary" >Guardar</button>
+	<a href="llenado.html" class="btn btn-default">Atras</a>
+    </form>
+  </div>
+  
+  <!-- Agregamos los archivos JavaScript de Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5"></script>
+
+
+</body>
+</html>
