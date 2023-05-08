@@ -59,4 +59,34 @@
     <servlet-name>RegistrarProductos</servlet-name>
     <url-pattern>/RegistrarProductos</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Editar</display-name>
+    <servlet-name>Editar</servlet-name>
+    <servlet-class>co.edu.uptc.servlets.Editar</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Editar</servlet-name>
+    <url-pattern>/Editar</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>editarAutores</display-name>
+    <servlet-name>editarAutores</servlet-name>
+    <servlet-class>co.edu.uptc.servlets.editarAutores</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>editarAutores</servlet-name>
+    <url-pattern>/editarAutores</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ActualizarProducto</display-name>
+    <servlet-name>ActualizarProducto</servlet-name>
+    <servlet-class>co.edu.uptc.servlets.ActualizarProducto</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ActualizarProducto</servlet-name>
+    <url-pattern>/ActualizarProducto</url-pattern>
+  </servlet-mapping>
 </web-app>

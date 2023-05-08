@@ -9,9 +9,34 @@
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg bg-body-primary">
+        <div class="container-fluid">
+            <div class="container">
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-1">
+                        <a class="navbar-brand" href="index.html">
+                            <img src="Imagenes/log_uptc.png" alt="log_uptc" width="380" height="120">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <ul class="navbar-nav mx-auto mb-lg-3 ">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">REGISTRAR</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">ESTADÍSTICAS</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
   <div class="container mt-5">
     <h1>Registrar producto</h1>
-    <form action="RegistrarProductos" method="post">
+    <form action="RegistrarProductos" method="post" enctype="multipart/form-data">
       <div class="mb-3">
         <label for="nombreProducto" class="form-label">Nombre del producto:</label>
         <input type="text" id="nombreProducto" name="nombreProducto" class="form-control" required>
@@ -53,13 +78,17 @@
         <label for="fechaPublicacion" class="form-label">Fecha de publicación:</label>
         <input type="date" id="fechaPublicacion" name="fechaPublicacion" class="form-control" required>
       </div>
+      
+      <div class="mb-3">
+    	<label for="archivoPDF">Adjuntar un archivo</label>
+    	<input type="file" id="archivoPDF" name="archivoPDF" >
+  	  </div>
 
     <button type="submit" class="btn btn-primary">Agregar</button>
 	<a href="index.html" class="btn btn-default">Atras</a>
     </form>
   </div>
   
-  <!-- Agregamos los archivos JavaScript de Bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5"></script>
 
 </body>

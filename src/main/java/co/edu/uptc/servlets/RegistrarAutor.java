@@ -27,6 +27,7 @@ public class RegistrarAutor extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String nombreAutores = request.getParameter("nombreAutores");
 		String tipoDocumento = request.getParameter("tipoDocumento");
 		String numeroDocumento = request.getParameter("numeroDocumento");
