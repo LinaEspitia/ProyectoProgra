@@ -7,6 +7,8 @@ public class Producto {
 	private String nombreProducto;
 	private String descripcionProducto;
 	private String anioPublicacion;
+	public String archivoNombre;
+	public byte[] archivoContenido;
 
 	public int getIdProducto() {
 		return idProducto;
@@ -48,4 +50,20 @@ public class Producto {
 		this.anioPublicacion = anioPublicacion;
 	}
 
+	public String getArchivoNombre() {
+		return archivoNombre;
+	}
+
+	public void setArchivoNombre(String archivoNombre) {
+		this.archivoNombre = archivoNombre;
+	}
+
+	public byte[] getArchivoContenido() {
+		return archivoContenido;
+	}
+
+	public void setArchivoContenido(byte[] archivoContenido) {
+		this.archivoContenido = archivoContenido;
+	}
+	
 }

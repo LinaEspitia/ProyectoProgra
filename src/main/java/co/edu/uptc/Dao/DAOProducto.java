@@ -5,41 +5,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
 import co.edu.uptc.coneccion.BDConeccion;
 import co.edu.uptc.modelo.Producto;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 public class DAOProducto {
 
-	private Connection conector;
+	private Connection conector = new BDConeccion().getConn();;
 
-	public DAOProducto() {
-
-		conector = new BDConeccion().getConn();
-	}
-
-	public void AgregarProducto(Producto p) {
-
-		String sentenciaSQL = "INSERT INTO Producto (nombreProducto, tipoProducto, descripcionProducto, anioPublicacion) VALUES ('"
-				+ p.getNombreProducto() + "', '" + p.getTipoProducto() + "', '" + p.getDescripcionProducto() + "', '"
-				+ p.getAnioPublicacion() + "')";
-
-		Statement ejecucion = null;
-
-		try {
-			ejecucion = (Statement) conector.createStatement();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try {
-			ejecucion.execute(sentenciaSQL);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
 	
 	public void ActualizarProducto(Producto p) {
 
@@ -65,8 +43,7 @@ public class DAOProducto {
 	
 	public ArrayList<Producto> ListaProductos(){
 		ArrayList<Producto> lista= new ArrayList<>();
-		String SentenciaSQL="SELECT * FROM Producto;";
-		
+		String SentenciaSQL="SELECT idProducto, nombreProducto, tipoProducto, descripcionProducto, anioPublicacion FROM Producto;";
 		Statement ejecucion = null;
 		ResultSet resultados = null;
 		

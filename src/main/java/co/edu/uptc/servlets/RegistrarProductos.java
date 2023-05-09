@@ -5,10 +5,17 @@ import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import jakarta.servlet.http.Part;
 
-import co.edu.uptc.Dao.DAOProducto;
-import co.edu.uptc.modelo.Producto;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Paths;
+import java.sql.DriverManager;
+
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
+
+
 
 /**
  * Servlet implementation class RegistrarProductos
@@ -30,10 +37,13 @@ public class RegistrarProductos extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+	/*String eliminarId = null;
 		String id = null;
 		id=request.getParameter("productoId");
-		String eliminarId = request.getParameter("eliminar");
-		if (eliminarId.equals("1")){
+		eliminarId = request.getParameter("eliminar");
+		if (eliminarId != null){
 			
 			DAOProducto dp = new DAOProducto();
 			dp.eliminar(id);
@@ -42,6 +52,8 @@ public class RegistrarProductos extends HttpServlet {
 		} else {
 			
 			if (id==null) {
+				/* 
+				
 				String nombreProducto = request.getParameter("nombreProducto");
 				String tipoProducto = request.getParameter("tipoProducto");
 				String descripcionProducto = request.getParameter("descripcionProducto");
@@ -52,20 +64,25 @@ public class RegistrarProductos extends HttpServlet {
 				p.setDescripcionProducto(descripcionProducto);
 				p.setNombreProducto(nombreProducto);
 				p.setTipoProducto(tipoProducto);
+
 				
 				DAOProducto dp = new DAOProducto();
-				dp.AgregarProducto(p);
+				try {
+					dp.AgregarProducto(p);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
-				response.sendRedirect("Autores.html");
+				response.sendRedirect("Autores.html"); 
 			} else {
-				System.out.println(request.getParameter("productoId"));
-				System.out.println(request.getParameter("nombreProducto"));
+				
 				int idProducto = Integer.parseInt(request.getParameter("productoId"));
-				System.out.println(idProducto);
 				String nombreProducto = request.getParameter("nombreProducto");
 				String tipoProducto = request.getParameter("tipoProducto");
 				String descripcionProducto = request.getParameter("descripcionProducto");
 				String fechaTexto = request.getParameter("fechaPublicacion");
+
 				
 				Producto p = new Producto();
 				p.setIdProducto(idProducto);
@@ -80,7 +97,7 @@ public class RegistrarProductos extends HttpServlet {
 				response.sendRedirect("MostrarDatos");
 			}
 			
-		}
+		}*/
 
 	}
 
@@ -88,8 +105,44 @@ public class RegistrarProductos extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+		
+		// Obtener el archivo enviado en el formulario
+        Part filePart = request.getPart("archivoPDF");
 
+        // Obtener el nombre del archivo
+        String archivoNombre = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+        
+
+        // Obtener el contenido del archivo
+        InputStream fileContent = filePart.getInputStream();
+		
+        byte[] archivoContenido = fileContent.readAllBytes();   
+    	String esquema = "productosinvestigacion";
+    	// Definir la ruta de la base de datos
+    	String dbUrl = "jdbc:mysql://20.55.103.27:3306/" + esquema;
+        String user = "daniel";
+        String password = "D@niel1927";
+        try (Connection conn = (Connection) DriverManager.getConnection(dbUrl, user, password)) {
+            String sql = "INSERT INTO Producto (tipoProducto, nombreProducto, descripcionProducto, anioPublicacion, archivoNombre, archivoContenido) VALUES ( ?, ?, ?, ?, ?, ?)";
+            PreparedStatement statement = (PreparedStatement) conn.prepareStatement(sql);
+            
+			String nombreProducto = request.getParameter("nombreProducto");
+			String tipoProducto = request.getParameter("tipoProducto");
+			String descripcionProducto = request.getParameter("descripcionProducto");
+			String fechaTexto = request.getParameter("fechaPublicacion");
+			
+		    statement.setString(1, tipoProducto);
+			statement.setString(2, nombreProducto);
+		    statement.setString(3, descripcionProducto);
+		    statement.setString(4, fechaTexto);
+            statement.setString(5, archivoNombre);
+            statement.setBytes(6, archivoContenido);
+            statement.executeUpdate();
+            
+			response.sendRedirect("RegistrarAutor");
+            
+        } catch (Exception ex) {
+            response.getWriter().println("Error: " + ex.getMessage());
+        }
+	}
 }

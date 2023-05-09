@@ -89,4 +89,44 @@
     <servlet-name>ActualizarProducto</servlet-name>
     <url-pattern>/ActualizarProducto</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>archivo</display-name>
+    <servlet-name>archivo</servlet-name>
+    <servlet-class>co.edu.uptc.servlets.archivo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>archivo</servlet-name>
+    <url-pattern>/archivo</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CrudProductos</display-name>
+    <servlet-name>CrudProductos</servlet-name>
+    <servlet-class>co.edu.uptc.servlets.CrudProductos</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CrudProductos</servlet-name>
+    <url-pattern>/CrudProductos</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CrudAutores</display-name>
+    <servlet-name>CrudAutores</servlet-name>
+    <servlet-class>co.edu.uptc.servlets.CrudAutores</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CrudAutores</servlet-name>
+    <url-pattern>/CrudAutores</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>llenarAutor</display-name>
+    <servlet-name>llenarAutor</servlet-name>
+    <servlet-class>co.edu.uptc.servlets.llenarAutor</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>llenarAutor</servlet-name>
+    <url-pattern>/llenarAutor</url-pattern>
+  </servlet-mapping>
 </web-app>

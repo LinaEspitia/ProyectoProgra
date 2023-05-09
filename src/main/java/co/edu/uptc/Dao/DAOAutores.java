@@ -67,7 +67,8 @@ public class DAOAutores {
 	
 	public ArrayList<Autores> ListaAutores(){
 		ArrayList<Autores> lista= new ArrayList<>();
-		String SentenciaSQL="SELECT * FROM Autores;";
+		//String SentenciaSQL="SELECT * FROM Autores where productoId = "+ id + ";";
+		String SentenciaSQL="SELECT * FROM Autores ;";	
 		
 		Statement ejecucion = null;
 		ResultSet resultados = null;
